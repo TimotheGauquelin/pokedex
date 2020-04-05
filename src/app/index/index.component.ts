@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from '../pokemon';
-import { POKEMONS } from '../mock-pokemons';
+import { PokemonService } from '../pokemon.service';
+import { MessageService } from '../messages.service';
 
 @Component({
   selector: 'app-index',
@@ -9,16 +10,23 @@ import { POKEMONS } from '../mock-pokemons';
 })
 export class IndexComponent implements OnInit {
 
-  pokemons = POKEMONS;
   selectedPokemon: Pokemon;
+  pokemons: Pokemon[];
 
-  constructor() { }
+  constructor(private pokemonService: PokemonService, private messageService: MessageService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.getPokemons();
   }
 
   onSelect(pokemon: Pokemon): void {
     this.selectedPokemon = pokemon;
+    this.messageService.add(`Vous avez selectionné ${pokemon.name}`)
+  }
+
+  getPokemons(): void {
+    this.pokemonService.getPokemons()
+      .subscribe(pokemons => this.pokemons = pokemons);
   }
 
 }
