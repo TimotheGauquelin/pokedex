@@ -1,0 +1,8 @@
+<div class="grid grid-pad">
+<a *ngFor="let pokemon of pokemons" class="col-1-4"
+    routerLink="/pokemon/{{pokemon.id}}">
+  <div class="module hero">
+    <h4>{{pokemon.name}}</h4>
+  </div>
+</a>
+</div>
