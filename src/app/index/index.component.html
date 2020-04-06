@@ -1,10 +1,9 @@
 <div class="pokedex">
 <ul class="pokemon">
-  <li *ngFor="let pokemon of pokemons"
-    [class.selected]="pokemon === selectedPokemon"
-    (click)="onSelect(pokemon)">
-    
-    <span class="badge">{{pokemon.id}}</span> {{pokemon.name}}
+  <li *ngFor="let pokemon of pokemons">
+    <a routerLink="/pokemon/{{pokemon.id}}">
+      <span class="badge">{{pokemon.id}}</span> {{pokemon.name}}
+    </a>
   </li>
 </ul>
 

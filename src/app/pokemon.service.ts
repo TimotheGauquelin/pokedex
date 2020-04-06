@@ -15,4 +15,10 @@ getPokemons(): Observable<Pokemon[]> {
   return of(POKEMONS);
 }
 
+getPokemon(id: number): Observable<Pokemon> {
+  // TODO: send the message _after_ fetching the Pokemon
+  this.messageService.add(`Vous avez fait une recherche sur ${id}`);
+  return of(POKEMONS.find(pokemon => pokemon.id === id));
+}
+
 }
